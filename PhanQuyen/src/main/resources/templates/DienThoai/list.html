@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone</title>
+</head>
+<body>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Brand</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="phone : ${dienThoais}">
+            <td th:text="${phone.id}"></td>
+            <td th:text="${phone.tenDienLoai}"></td>
+            <td th:text="${phone.giaVon}"></td>
+            <td th:text="${phone.nhaCungCap}"></td>
+            <td>
+                <a th:href="@{'/phones/edit/' + ${phone.id}}">Edit</a>
+                <a th:href="@{'/phones/delete/' + ${phone.id}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

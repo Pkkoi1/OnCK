@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DonHang</title>
+</head>
+<body>
+<div class="container">
+    <h1>PhamDangKhoi_21042951</h1>
+    <div th:if="${error}" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
+    <form th:object="${donHang}" method="post" th:action="@{/donHang/add}">
+        <div>
+            <label for="maDonHang">Don Hang</label>
+            <input type="text" id="maDonHang" name="maDonHang" th:value="${maDonhangRoll}" th:placeHolder="${maDonhangRoll}">
+        </div>
+        <div>
+            <label for="tenKhachHang">Ten khach hang</label>
+            <input type="text" id="tenKhachHang" th:field="*{tenKhachHang}" th:value="*{tenKhachHang}" required>
+        </div>
+        <div>
+            <label for="ngayThangDat">Ngay dat</label>
+            <input type="date" id="ngayThangDat" th:field="*{ngayThangDat}" th:value="*{ngayThangDat}" required>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="text" id="email" th:field="*{email}" th:value="*{email}" required>
+        </div>
+        <div>
+            <label for="tenSanPham">Ten san pham</label>
+            <input type="text" id="tenSanPham" th:field="*{tenSanPham}" th:value="*{tenSanPham}" required>
+        </div>
+        <div>
+            <label>Trang thai</label>
+            <div th:each="option : ${trangThaiS}">
+                <input type="radio" th:id="${'trangThai' + option.ordinal()}" th:name="trangThai" th:value="${option}" th:checked="${option.ordinal()} == 1">
+                <label th:for="${'trangThai' + option.ordinal()}" th:text="${option}"></label>
+            </div>
+        </div>
+        <div>
+            <label for="maCuaHang">Cua Hang</label>
+            <select id="maCuaHang" th:field="*{maCuaHang.id}">
+                <option th:each="cuaHang : ${cuaHangs}" th:value="${cuaHang.id}" th:text="${cuaHang.ten}"></option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

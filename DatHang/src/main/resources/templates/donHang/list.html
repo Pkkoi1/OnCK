@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DonHang</title>
+</head>
+<body>
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <h1>PhamDangKhoi_21042951</h1>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><a href="#">Students | </a></td>
+
+            <td><a href="donHang/add">Courses</a></td>
+        </tr>
+        <tr>
+            <form action="/donHang" method="get">
+                <td colspan="8">
+                    <input type="text" name="searchKey" placeholder="Search...">
+                    <button type="submit">Search</button>
+                </td>
+            </form>
+        </tr>
+        <tr>
+            <td>Don Hang</td>
+            <td>Ten khach hang</td>
+            <td>Ngay dat</td>
+            <td>Email</td>
+            <td>Ten san pham</td>
+            <td>Trang thai</td>
+            <td>Cua Hang</td>
+            <td>Action</td>
+        </tr>
+        <tr th:each="donHang : ${donHangs}">
+            <td th:text="${donHang.maDonHang}"></td>
+            <td th:text="${donHang.tenKhachHang}"></td>
+            <td th:text="${donHang.ngayThangDat}"></td>
+            <td th:text="${donHang.email}"></td>
+            <td th:text="${donHang.tenSanPham}"></td>
+            <td th:text="${donHang.trangThai}"></td>
+            <td th:text="${donHang.maCuaHang.ten}"></td>
+            <td>
+                <form th:action="@{/donHang/delete/{id}(id=${donHang.id})}" th:if="${donHang.trangThai.ordinal() == 0}" th:method="post">
+                    <input type="submit" value="Delete">
+                </form>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
