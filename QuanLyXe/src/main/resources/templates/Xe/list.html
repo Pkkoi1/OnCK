@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xe</title>
+</head>
+<header>
+
+    <table align="center">
+        <thead style="text-align: center">
+        <tr >
+            <h1 style="text-align: center">PhamDangKhoi_21042951</h1>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><a href=/loaixe>Danh sách các loại xe | </a></td>
+            <td><a href="/xe">Danh sách xe | </a></td>
+            <td><a href="/xe/add">Thêm xe mới</a></td>
+        </tr>
+        </tbody>
+    </table>
+</header>
+<body>
+<div class="container" style="margin-left: 5%; margin-right: 5%">
+    <form action="/xe" method="get">
+        <select name="filter">
+            <option value="">Tất cả</option>
+            <option th:each="loai : ${loaixes}" th:value="${loai.id}" th:text="${loai.tenLoai}">Loai</option>
+                    </select>
+        <button type="submit">Lọc</button>
+    </form>
+        <table border="1" align="center">
+        <tr border="1">
+            <td>Ten xe</td>
+            <td>Gia</td>
+            <td>Nam SX</td>
+            <td>Loai</td>
+        </tr>
+        <tr th:each="xe : ${xes}">
+            <td th:text="${xe.tenXe}"></td>
+            <td th:text="${xe.gia}"></td>
+            <td th:text="${xe.namSx}"></td>
+            <td th:text="${xe.maLoai.tenLoai}"></td>
+        </tr>
+        </table>
+
+</div>
+</body>
+</html>

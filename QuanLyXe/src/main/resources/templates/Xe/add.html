@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+</head>
+
+<body>
+<header>
+    <table align="center">
+        <thead style="text-align: center">
+        <tr >
+            <h1 style="text-align: center">PhamDangKhoi_21042951</h1>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><a href=/loaixe>Danh sách các loại xe | </a></td>
+            <td><a href="/xe">Danh sách xe | </a></td>
+            <td><a href="/xe/add">Thêm xe mới</a></td>
+        </tr>
+        </tbody>
+    </table>
+</header>
+<div class="container" style="margin-left: 5%; margin-right: 5%">
+    <form th:action="@{/xe/add}" th:object="${xe}" th:method="post">
+        <table>
+            <tr>
+                <td>Ten xe</td>
+                <td><input type="text" th:field="*{tenXe}"></td>
+            </tr>
+            <tr>
+                <td>Gia</td>
+                <td><input type="number" th:field="*{gia}"></td>
+            </tr>
+            <tr>
+                <td>Nam SX</td>
+                <td><input type="number" th:field="*{namSx}"></td>
+            </tr>
+            <tr>
+                <td>Loai</td>
+                <td>
+                    <select th:field="*{maLoai}">
+                        <option th:each="loai : ${loaixes}" th:value="${loai.id}" th:text="${loai.tenLoai}">Loai</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit">Add</button></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
