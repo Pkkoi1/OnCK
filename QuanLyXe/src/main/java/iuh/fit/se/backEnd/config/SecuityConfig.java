@@ -24,9 +24,9 @@ public class SecuityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/").permitAll()
-                                .requestMatchers("/xe/**").hasAnyAuthority("USER", "ADMIN")
-                                .requestMatchers("/loaixe/**").hasAnyAuthority("ADMIN")
-                                .requestMatchers("/xe/add").hasAuthority("ADMIN")
+                                .requestMatchers("/xe/").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                                .requestMatchers("/loaixe/**").hasAnyAuthority("ROLE_ADMIN")
+                                .requestMatchers("/xe/add").hasAuthority("ROLE_ADMIN")
                                 .anyRequest().authenticated()
                 )
 
