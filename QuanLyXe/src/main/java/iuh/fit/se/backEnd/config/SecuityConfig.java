@@ -24,12 +24,20 @@ public class SecuityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/").permitAll()
-                                .requestMatchers("/xe/**").hasAnyAuthority("ROLE_USER")
-                                .requestMatchers("/loaixe/**").hasAnyAuthority("ROLE_ADMIN")
+                                .requestMatchers("/xe/**").hasAnyAuthority("USER", "ADMIN")
+                                .requestMatchers("/loaixe/**").hasAnyAuthority("ADMIN")
+                                .requestMatchers("/xe/add").hasAuthority("ADMIN")
                                 .anyRequest().authenticated()
                 )
+
                 .formLogin(withDefaults())
-                .logout(LogoutConfigurer::permitAll)
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll()
+                )
                 .exceptionHandling(exceptionHandling ->
                 exceptionHandling
                         .accessDeniedPage("/error.html")

@@ -44,6 +44,8 @@ public class XeController {
         }
         return modelAndView;
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/add")
     public ModelAndView showAddXe()
     {
@@ -53,6 +55,7 @@ public class XeController {
         return modelAndView;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public String addXe(Xe xe)
     {
