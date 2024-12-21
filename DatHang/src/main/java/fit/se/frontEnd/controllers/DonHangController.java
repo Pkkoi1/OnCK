@@ -51,23 +51,15 @@ public class DonHangController {
     }
 
     @PostMapping("/add")
-    public String addDonHang(Donhang donhang, RedirectAttributes redirectAttribute)
-    {
-        String error = donHangService.addDonHang(donhang);
-
-
-        if(error.equals("Thêm đơn hàng thành công"))
-        {
-
+    public String addDonHang(Donhang donhang, RedirectAttributes redirectAttribute) throws Exception {
+        try {
+            donHangService.addDonHang(donhang);
+            redirectAttribute.addFlashAttribute("success", "Thêm đơn hàng thành công");
             return "redirect:/donHang";
-        }
-        else
-        {
-            redirectAttribute.addFlashAttribute("error", error);
-
+        } catch (Exception e) {
+            redirectAttribute.addFlashAttribute("error", e.getMessage());
             return "redirect:/donHang/add";
         }
-
     }
     @PostMapping("/delete/{id}")
     public String deleteDonHang(@PathVariable("id") long id)

@@ -34,13 +34,11 @@ public class XeController {
         {
             modelAndView.addObject("xes", xeService.filterXe(filter.get()));
             modelAndView.addObject("loaixes", loaiXeService.getAllLoaiXe());
-            System.out.println("1");
         }
         else
         {
             modelAndView.addObject("loaixes", loaiXeService.getAllLoaiXe());
             modelAndView.addObject("xes", xeService.getAllXe());
-            System.out.println("2");
         }
         return modelAndView;
     }

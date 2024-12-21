@@ -19,6 +19,7 @@
             <td><a href="donHang/add">Courses</a></td>
         </tr>
         <tr>
+
             <form action="/donHang" method="get">
                 <td colspan="8">
                     <input type="text" name="searchKey" placeholder="Search...">
@@ -53,6 +54,9 @@
         </tr>
         </tbody>
     </table>
+    <div th:if="${success}" style="color: green;">
+        <p th:text="${success}"></p>
+    </div>
 </div>
 </body>
 </html>

@@ -35,23 +35,28 @@ class DonHangImpl implements DonHangService {
     }
 
 
-    public String addDonHang(Donhang donhang) {
+    public Boolean addDonHang(Donhang donhang) throws Exception {
         if (donhang.getTenKhachHang().length() > 50 || donhang.getTenKhachHang().length() < 5) {
-            return "Tên khách hàng phải từ 5 đến 50 ký tự";
+            throw new Exception("Tên khách hàng phải từ 5 đến 50 ký tự");
         }
         String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
         Pattern pattern = Pattern.compile(emailRegex);
         if (!pattern.matcher(donhang.getEmail()).matches()) {
-            return "Email không hợp lệ";
+            throw new Exception("Email không hợp lệ");
         }
 
         if (donhang.getNgayThangDat().isBefore(LocalDate.now())) {
-            return "Ngày đặt không hợp lệ";
+            throw new Exception("Ngày đặt không hợp lệ");
         }
-        if(checkDonHangDaDat(donhang.getEmail(), donhang.getNgayThangDat()) == false)
-            return "Đơn hàng đã được đặt";
+        else if(donhang.getNgayThangDat().isAfter(LocalDate.now().plusDays(7)))
+        {
+            throw new Exception("Ngày đặt không hợp lệ");
+        }
+        if (!checkDonHangDaDat(donhang.getEmail(), donhang.getNgayThangDat())) {
+            throw new Exception("Đơn hàng đã được đặt");
+        }
         donHangRepository.save(donhang);
-        return "Thêm đơn hàng thành công";
+        return true;
     }
 
     public boolean checkDonHangDaDat(String email, LocalDate ngayThangDat) {

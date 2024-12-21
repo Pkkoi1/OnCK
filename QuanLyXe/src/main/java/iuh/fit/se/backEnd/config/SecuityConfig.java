@@ -25,8 +25,7 @@ public class SecuityConfig {
                         authorizeRequests
                                 .requestMatchers("/").permitAll()
                                 .requestMatchers("/xe/").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                                .requestMatchers("/loaixe/**").hasAnyAuthority("ROLE_ADMIN")
-                                .requestMatchers("/xe/add").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers("/loaixe/**", "/xe/add").hasAnyAuthority("ROLE_ADMIN")
                                 .anyRequest().authenticated()
                 )
 

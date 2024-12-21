@@ -17,7 +17,7 @@ public interface DonHangService {
     List<Donhang> getAllDonHang();
     List<Donhang> findbyKey(String key);
     String generateMaDonHang();
-    String addDonHang(Donhang donhang);
+    Boolean addDonHang(Donhang donhang) throws Exception;
     boolean checkDonHangDaDat(String email, LocalDate ngayThangDat);
     boolean deleteDonHang(Long id);
 }
